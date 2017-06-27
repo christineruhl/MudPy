@@ -5,7 +5,10 @@ C.Ruhl 08/2016
 Functions to support Fakequakes by building fault models, generating response spectra for validation, etc.
 '''
 import numpy as np
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
+=======
+>>>>>>> adding ruptfunctions.py
 from matplotlib import cm
 
 def bulk_2Dmisfit(home,project_names,rupture_list='ruptures.list',val='SA',Mw_lims=[5.8,9.5],dist_lims=[10,1000],cmapwf=cm.magma_r,misfit_lims=[-3,3],numwf_lims=[0,1000],GOF_lims=[0,2],n_mag_bins=10,n_dist_bins=10,A=-4.434,B=1.047,C=-0.138):
@@ -238,8 +241,11 @@ def bulk_2Dmisfit(home,project_names,rupture_list='ruptures.list',val='SA',Mw_li
     
     
     
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 =======
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+>>>>>>> adding ruptfunctions.py
 
 def plot_resp_spec(home,project_name,run_name,GF_list,fault_name,rupt,frequency_vector,stalist,slip_type='SS',plot_SA=True,Vs30=760):
     '''
@@ -385,11 +391,15 @@ def calc_rjb(slon,slat,ruptfile):
     # get fault patches that actually have rupture on them using rise times != 0 in column 8 in ruptfile    
     flon=genfromtxt(ruptfile,usecols=1,dtype='float')
     flat=genfromtxt(ruptfile,usecols=2,dtype='float')
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
     frisetime=genfromtxt(ruptfile,usecols=10,dtype='float')
 =======
     frisetime=genfromtxt(ruptfile,usecols=8,dtype='float')
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+    frisetime=genfromtxt(ruptfile,usecols=10,dtype='float')
+>>>>>>> adding ruptfunctions.py
     
     ind=mlab.find(frisetime)
     flon=flon[ind]
@@ -1278,7 +1288,10 @@ def calc_SA(home,project_name,run_name,GF_list,fault_name,rupture_list='ruptures
     frequency_vector=np.array([0.1]) # only do 10 s period
     
     # Read summary file
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
+=======
+>>>>>>> adding ruptfunctions.py
     if project_name=='Cascadia':
         sta=genfromtxt(home+project_name+'/'+GF_list,usecols=0,dtype='S')
         slon=genfromtxt(home+project_name+'/'+GF_list,usecols=1,dtype='float')
@@ -1289,6 +1302,7 @@ def calc_SA(home,project_name,run_name,GF_list,fault_name,rupture_list='ruptures
         slon=genfromtxt(home+project_name+'/data/station_info/'+GF_list,usecols=1,dtype='float')
         slat=genfromtxt(home+project_name+'/data/station_info/'+GF_list,usecols=2,dtype='float')
         rupt=genfromtxt(home+project_name+'/data/'+rupture_list,usecols=0,dtype='S')
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 =======
     sta=genfromtxt(home+project_name+'/data/station_info/'+GF_list,usecols=0,dtype='S')
     slon=genfromtxt(home+project_name+'/data/station_info/'+GF_list,usecols=1,dtype='float')
@@ -1296,24 +1310,35 @@ def calc_SA(home,project_name,run_name,GF_list,fault_name,rupture_list='ruptures
     
     rupt=genfromtxt(home+project_name+'/data/'+rupture_list,usecols=0,dtype='S')
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+>>>>>>> adding ruptfunctions.py
     for j in range(len(rupt)):
         print 'calculating SA for rupture '+rupt[j].split('.')[1] 
         # open summary file for writing
         # save in home+project_name+'/output/waveforms/_analysis.'+run_name+'.'+rupt[j].split('.')[1]+'.txt'
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
+=======
+>>>>>>> adding ruptfunctions.py
         if project_name=='Cascadia':
             sf=open(home+project_name+'/'+run_name+'.'+rupt[j].split('.')[1]+'/_analysis.'+run_name+'.'+rupt[j].split('.')[1]+'.txt','w')
         else:
             sf=open(home+project_name+'/output/waveforms/'+run_name+'.'+rupt[j].split('.')[1]+'/_analysis.'+run_name+'.'+rupt[j].split('.')[1]+'.txt','w')
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 =======
         sf=open(home+project_name+'/output/waveforms/'+run_name+'.'+rupt[j].split('.')[1]+'/_analysis.'+run_name+'.'+rupt[j].split('.')[1]+'.txt','w')
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+>>>>>>> adding ruptfunctions.py
         line_out='# Station, lon, lat, SAobsEAST [g], SAobsNORTH [g], SAobsRotD50 [g], SAcalc [g], sigma [g], Rjb [km]\n'
             
         for k in range(len(sta)):            
             ### Calculate new response spectra using pyrotd code responseSpectrum
             ### responseSpectrum(timeStep, accelTs, oscFreqs, oscDamping=0.05)
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
+=======
+>>>>>>> adding ruptfunctions.py
             if project_name=='Cascadia':
                 e=read(home+project_name+'/'+run_name+'.'+rupt[j].split('.')[1]+'/'+sta[k]+'.LYE.sac')
                 n=read(home+project_name+'/'+run_name+'.'+rupt[j].split('.')[1]+'/'+sta[k]+'.LYN.sac')
@@ -1321,19 +1346,26 @@ def calc_SA(home,project_name,run_name,GF_list,fault_name,rupture_list='ruptures
                 e=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt[j].split('.')[1]+'/'+sta[k]+'.LYE.sac')
                 n=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt[j].split('.')[1]+'/'+sta[k]+'.LYN.sac')
                 
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 =======
             e=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt[j].split('.')[1]+'/'+sta[k]+'.LYE.sac')
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+>>>>>>> adding ruptfunctions.py
             # diff twice to get acceleration
             e.differentiate()
             e.differentiate()
             # calculate response
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
             respe=responseSpectrum(e[0].stats.sampling_rate,e[0].data/9.81,frequency_vector)          
 =======
             respe=responseSpectrum(e[0].stats.sampling_rate,e[0].data/9.81,frequency_vector)
             n=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt[j].split('.')[1]+'/'+sta[k]+'.LYN.sac')             
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+            respe=responseSpectrum(e[0].stats.sampling_rate,e[0].data/9.81,frequency_vector)          
+>>>>>>> adding ruptfunctions.py
             # diff twice to get acceleration
             n.differentiate()
             n.differentiate()
@@ -1344,14 +1376,20 @@ def calc_SA(home,project_name,run_name,GF_list,fault_name,rupture_list='ruptures
             resp=rotatedResponseSpectrum(n[0].stats.sampling_rate, n[0].data/9.81, e[0].data/9.81, frequency_vector)
   
             # get the magnitude of each rupture from the log file
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
+=======
+>>>>>>> adding ruptfunctions.py
             if project_name=='Cascadia':
                 logfile=home+project_name+'/'+run_name+'.'+rupt[j].split('.')[1]+'/_'+run_name+'.'+rupt[j].split('.')[1]+'.log'
             else:
                 logfile=home+project_name+'/output/ruptures/'+run_name+'.'+rupt[j].split('.')[1]+'.log'
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 =======
             logfile=home+project_name+'/output/ruptures/'+run_name+'.'+rupt[j].split('.')[1]+'.log'
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+>>>>>>> adding ruptfunctions.py
             f=open(logfile,'r')
             loop_go=True
             while loop_go:
@@ -1361,16 +1399,22 @@ def calc_SA(home,project_name,run_name,GF_list,fault_name,rupture_list='ruptures
                     break
                     
             # calculate Rjb
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
+=======
+>>>>>>> adding ruptfunctions.py
             if project_name=='Cascadia':
                 ruptfile=home+project_name+'/'+run_name+'.'+rupt[j].split('.')[1]+'/_'+run_name+'.'+rupt[j].split('.')[1]+'.rupt'
                 #print ruptfile
             else:
                 ruptfile=home+project_name+'/output/ruptures/'+run_name+'.'+rupt[j].split('.')[1]+'.rupt'
                 
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 =======
             ruptfile=home+project_name+'/output/ruptures/'+run_name+'.'+rupt[j].split('.')[1]+'.rupt'
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+>>>>>>> adding ruptfunctions.py
             Rjb=calc_rjb(slon[k],slat[k],ruptfile)
             
             # set Vs30
@@ -1806,20 +1850,29 @@ def sac2rt_textfile(home,project_name,run_name,time_epi,rupture_list):
     import numpy as np
     
     # load ruptures
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
+=======
+>>>>>>> adding ruptfunctions.py
     if project_name=='Cascadia':
         ruptures=np.genfromtxt(home+project_name+'/'+rupture_list,usecols=0,dtype='S')
     else:
         ruptures=np.genfromtxt(home+project_name+'/data/'+rupture_list,usecols=0,dtype='S')
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 =======
     ruptures=np.genfromtxt(home+project_name+'/data/'+rupture_list,usecols=0,dtype='S')
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+>>>>>>> adding ruptfunctions.py
     
     for j in range(len(ruptures)):
         # get rupture number
         rupt=ruptures[j].split('.')[1]
         print 'writing realtime textfiles for rupture '+rupt
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
+=======
+>>>>>>> adding ruptfunctions.py
         if project_name=='Cascadia':
             # open summary file for reading
             sumfile=home+project_name+'/'+run_name+'.'+rupt+'/_'+run_name+'.'+rupt+'.offsets'
@@ -1833,6 +1886,7 @@ def sac2rt_textfile(home,project_name,run_name,time_epi,rupture_list):
             outfile1=home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/_horiz.'+run_name+'.'+rupt+'.txt'
             outfile2=home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/_vert.'+run_name+'.'+rupt+'.txt'
             
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 =======
         # open summary file for reading
         sumfile=home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/_summary.'+run_name+'.'+rupt+'.txt'
@@ -1840,6 +1894,8 @@ def sac2rt_textfile(home,project_name,run_name,time_epi,rupture_list):
         outfile1=home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/_horiz.'+run_name+'.'+rupt+'.txt'
         outfile2=home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/_vert.'+run_name+'.'+rupt+'.txt'
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+>>>>>>> adding ruptfunctions.py
         file1=open(outfile1,'w')
         file2=open(outfile2,'w')
         
@@ -1848,7 +1904,10 @@ def sac2rt_textfile(home,project_name,run_name,time_epi,rupture_list):
         
         for i in range(len(sta)):
             # read waveforms
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
+=======
+>>>>>>> adding ruptfunctions.py
             if project_name=='Cascadia':
                 e=read(home+project_name+'/'+run_name+'.'+rupt+'/'+sta[i]+'.LYE.sac')
                 n=read(home+project_name+'/'+run_name+'.'+rupt+'/'+sta[i]+'.LYN.sac')
@@ -1857,11 +1916,14 @@ def sac2rt_textfile(home,project_name,run_name,time_epi,rupture_list):
                 e=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/'+sta[i]+'.LYE.sac')
                 n=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/'+sta[i]+'.LYN.sac')
                 z=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/'+sta[i]+'.LYZ.sac')
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 =======
             e=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/'+sta[i]+'.LYE.sac')
             n=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/'+sta[i]+'.LYN.sac')
             z=read(home+project_name+'/output/waveforms/'+run_name+'.'+rupt+'/'+sta[i]+'.LYZ.sac')
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+>>>>>>> adding ruptfunctions.py
             delta=e[0].stats.starttime-time_epi
             
             # print adjusted times
@@ -1902,8 +1964,12 @@ def sort_rt_textfile(outfile):
     f=open(outfile,'w')
     for i in range(len(lines)):
         f.write(lines[i])
+<<<<<<< 070eddc9be6db7374f2b8e44e1e9c0bfdb051e31
 <<<<<<< 550bdcafd93ec3f83a2030f1a3900779ce8b3dc2
     f.close()
 =======
     f.close()
 >>>>>>> new functions for building and validating rupture simulations 2
+=======
+    f.close()
+>>>>>>> adding ruptfunctions.py
